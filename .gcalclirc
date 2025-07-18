@@ -1,0 +1,23 @@
+[gcalcli]
+# Default calendar to use
+default_calendar = scottrych@gmail.com
+
+# Detail length for events
+detail_length = title
+
+# Default event length (in minutes)
+default_duration = 60
+
+# Date format
+date_format = %Y-%m-%d
+
+# Time format  
+time_format = %H:%M
+
+# Show week numbers
+show_week_numbers = true
+
+# Colors for different calendars
+color_family = cyan
+color_work = yellow
+color_personal = green
