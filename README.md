@@ -7,6 +7,7 @@ This repository contains configuration files, aliases, and useful commands for m
 - [Common Commands](#common-commands)
 - [NTFY Notifications](#ntfy-notifications)
 - [Google Calendar (gcalcli)](#google-calendar-gcalcli)
+- [SSH Configuration](#ssh-configuration)
 - [Installation](#installation)
 
 ## Aliases
@@ -72,6 +73,22 @@ gcalcli --calendar='scottrych@gmail.com' add "Meeting with team" "2024-01-15 14:
 gcalcli --calendar='scottrych@gmail.com' --calendar='Family' search "keyword"
 ```
 
+## SSH Configuration
+
+The `ssh_config` file is a sanitized template for SSH host configuration. To use it:
+
+```bash
+cp ~/dotfiles/ssh_config ~/.ssh/config
+```
+
+Then fill in your hostnames, usernames, and key file paths. The template includes sensible defaults for all hosts:
+
+```
+Host *
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+```
+
 ## Installation
 
 ### 1. Clone this repository
@@ -79,7 +96,13 @@ gcalcli --calendar='scottrych@gmail.com' --calendar='Family' search "keyword"
 git clone https://github.com/scottrych/dotfiles.git ~/dotfiles
 ```
 
-### 2. Add aliases to your shell profile
+### 2. Copy SSH config (optional)
+```bash
+cp ~/dotfiles/ssh_config ~/.ssh/config
+```
+Fill in your hostnames, usernames, and key paths.
+
+### 3. Add aliases to your shell profile
 Add the following to your `~/.zshrc` or appropriate shell configuration file:
 
 ```bash
@@ -88,7 +111,7 @@ if [ -f ~/dotfiles/aliases.sh ]; then
 fi
 ```
 
-### 3. Reload your shell
+### 4. Reload your shell
 ```bash
 source ~/.zshrc
 ```
