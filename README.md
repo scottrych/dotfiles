@@ -103,17 +103,17 @@ cp ~/dotfiles/ssh_config ~/.ssh/config
 Fill in your hostnames, usernames, and key paths.
 
 ### 3. Add aliases to your shell profile
-Add the following to your `~/.zshrc` or appropriate shell configuration file:
+Add the following to `~/.config/fish/config.fish`:
 
-```bash
-if [ -f ~/dotfiles/aliases.sh ]; then
-    source ~/dotfiles/aliases.sh
-fi
+```fish
+if test -f ~/dotfiles/aliases.fish
+    source ~/dotfiles/aliases.fish
+end
 ```
 
 ### 4. Reload your shell
 ```bash
-source ~/.zshrc
+source ~/.config/fish/config.fish
 ```
 
 ## Configuration Examples
