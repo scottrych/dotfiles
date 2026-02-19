@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Environment
 
-- Shell: fish (`/opt/homebrew/bin/fish`), zsh with Oh-My-Zsh also configured
+- Shell: fish (`/opt/homebrew/bin/fish`)
 - Package manager: Homebrew at `/opt/homebrew/bin`
 - Prefer `trash` over `rm` for file deletion (recoverable)
 
@@ -37,6 +37,15 @@ Tracked at https://github.com/scottrych/dotfiles. Local copy at `~/dotfiles/`.
 Key files: `aliases.fish`, `config.fish`, `ssh_config`, `.gcalclirc`
 
 Git remote uses SSH (`git@github.com:scottrych/dotfiles.git`). Push via terminal — Claude Code cannot access the macOS keychain.
+
+## Fish Shell Config
+
+Config at `~/.config/fish/config.fish` (tracked in dotfiles as `config.fish`). Includes:
+- bobthefish theme settings
+- AFM (Apple Intelligence) server functions: `afm_start`, `afm_stop`, `afm_status`
+- Ollama, LM Studio, and ZMK toolchain paths
+
+API keys are **not** in the repo — store them in `~/.config/fish/conf.d/secrets.fish`.
 
 ## Dotfiles Commands
 
