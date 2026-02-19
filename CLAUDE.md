@@ -32,7 +32,7 @@ State management via `provider`. Build flavors: `normal` and `fdroid`.
 
 ## Dotfiles Commands
 
-Aliases defined in `dotfiles/aliases.sh`:
+Aliases defined in `dotfiles/aliases.fish` (fish) and `dotfiles/aliases.sh` (bash):
 
 ```bash
 # Calendar (gcalcli)
@@ -47,7 +47,7 @@ notify-low "info"     # Low priority
 notify-done "cmd"     # Notify when command completes
 ```
 
-Source dotfiles by adding to shell config: `source ~/dotfiles/aliases.sh`
+Source in fish: `source ~/dotfiles/aliases.fish`
 
 ## Arc Bookmark Converter (`main.py`)
 
