@@ -8,6 +8,7 @@ This repository contains configuration files, aliases, and useful commands for m
 - [NTFY Notifications](#ntfy-notifications)
 - [Google Calendar (gcalcli)](#google-calendar-gcalcli)
 - [SSH Configuration](#ssh-configuration)
+- [Fish Shell Configuration](#fish-shell-configuration)
 - [Installation](#installation)
 
 ## Aliases
@@ -89,6 +90,26 @@ Host *
     ServerAliveCountMax 3
 ```
 
+## Fish Shell Configuration
+
+`config.fish` is a sanitized fish shell config including:
+- bobthefish theme settings
+- AFM (Apple Intelligence) server functions (`afm_start`, `afm_stop`, `afm_status`)
+- Ollama, LM Studio, and ZMK toolchain paths
+- Placeholders for API keys
+
+To use it:
+```bash
+cp ~/dotfiles/config.fish ~/.config/fish/config.fish
+```
+
+Store secrets in a separate untracked file:
+```bash
+# ~/.config/fish/conf.d/secrets.fish
+set -gx GEMINI_API_KEY <your-key>
+set -gx OPENROUTER_API_KEY <your-key>
+```
+
 ## Installation
 
 ### 1. Clone this repository
@@ -96,13 +117,19 @@ Host *
 git clone https://github.com/scottrych/dotfiles.git ~/dotfiles
 ```
 
-### 2. Copy SSH config (optional)
+### 2. Copy fish config (optional)
+```bash
+cp ~/dotfiles/config.fish ~/.config/fish/config.fish
+```
+Add your API keys to `~/.config/fish/conf.d/secrets.fish`.
+
+### 3. Copy SSH config (optional)
 ```bash
 cp ~/dotfiles/ssh_config ~/.ssh/config
 ```
 Fill in your hostnames, usernames, and key paths.
 
-### 3. Add aliases to your shell profile
+### 4. Add aliases to your shell profile
 Add the following to `~/.config/fish/config.fish`:
 
 ```fish
@@ -111,7 +138,7 @@ if test -f ~/dotfiles/aliases.fish
 end
 ```
 
-### 4. Reload your shell
+### 5. Reload your shell
 ```bash
 source ~/.config/fish/config.fish
 ```
