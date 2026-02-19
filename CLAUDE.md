@@ -30,6 +30,14 @@ flutter build apk --flavor fdroid -t lib/main_fdroid.dart   # F-Droid flavor
 
 State management via `provider`. Build flavors: `normal` and `fdroid`.
 
+## Dotfiles Repo
+
+Tracked at https://github.com/scottrych/dotfiles. Local copy at `~/dotfiles/`.
+
+Key files: `aliases.fish`, `config.fish`, `ssh_config`, `.gcalclirc`
+
+Git remote uses SSH (`git@github.com:scottrych/dotfiles.git`). Push via terminal — Claude Code cannot access the macOS keychain.
+
 ## Dotfiles Commands
 
 Aliases defined in `dotfiles/aliases.fish` (fish) and `dotfiles/aliases.sh` (bash):
