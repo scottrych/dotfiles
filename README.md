@@ -46,7 +46,7 @@ ntf done COMMAND --pushover.priority low
 #### Examples
 ```bash
 ntf send --pushover.priority normal "Deployment completed"
-ntf done "make build" --pushover.priority low
+tnf done "make build" --pushover.priority low
 ntf send --pushover.priority high "Server down - immediate attention required"
 ```
 
