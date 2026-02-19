@@ -1,0 +1,21 @@
+Host *
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+
+Host <work-host-1>
+    Hostname <work-hostname-1>
+    User <username>
+    IdentityFile ~/.ssh/<keyfile>.pem
+    HostKeyAlgorithms +ssh-rsa,rsa-sha2-512,rsa-sha2-256
+    PubkeyAcceptedAlgorithms +ssh-rsa
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+
+Host <work-host-2>
+    Hostname <work-hostname-2>
+    User <username>
+    IdentityFile ~/.ssh/<keyfile>.pem
+    HostKeyAlgorithms +ssh-rsa,rsa-sha2-512,rsa-sha2-256
+    PubkeyAcceptedAlgorithms +ssh-rsa
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
