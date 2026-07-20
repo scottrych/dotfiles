@@ -7,26 +7,21 @@ This repository contains configuration files, aliases, and useful commands for m
 - [Common Commands](#common-commands)
 - [NTFY Notifications](#ntfy-notifications)
 - [Google Calendar (gcalcli)](#google-calendar-gcalcli)
-- [Nessus Agent](#nessus-agent)
+- [SSH Configuration](#ssh-configuration)
+- [Fish Shell Configuration](#fish-shell-configuration)
 - [Installation](#installation)
 
 ## Aliases
 
 ### Google Calendar
 ```bash
-# Quick calendar access with specific calendars and details
 alias gcal="gcalcli --calendar='scottrych@gmail.com' --calendar='Family' --details title"
-
-# Show today's agenda
 alias agenda="gcalcli --calendar='scottrych@gmail.com' --calendar='Family' agenda"
-
-# Show this week's calendar
 alias week="gcalcli --calendar='scottrych@gmail.com' --calendar='Family' calw"
 ```
 
 ### Notifications
 ```bash
-# Quick notification aliases
 alias notify="ntf send --pushover.priority normal"
 alias notify-low="ntf send --pushover.priority low"
 alias notify-high="ntf send --pushover.priority high"
@@ -52,13 +47,8 @@ ntf done COMMAND --pushover.priority low
 
 #### Examples
 ```bash
-# Send a normal priority notification
 ntf send --pushover.priority normal "Deployment completed"
-
-# Send a low priority notification when a long-running command finishes
-ntf done "make build" --pushover.priority low
-
-# Send a high priority alert
+tnf done "make build" --pushover.priority low
 ntf send --pushover.priority high "Server down - immediate attention required"
 ```
 
@@ -84,52 +74,73 @@ gcalcli --calendar='scottrych@gmail.com' add "Meeting with team" "2024-01-15 14:
 gcalcli --calendar='scottrych@gmail.com' --calendar='Family' search "keyword"
 ```
 
-### Nessus Agent
+## SSH Configuration
 
-#### Link Nessus Agent
+The `ssh_config` file is a sanitized template for SSH host configuration. To use it:
+
 ```bash
-/opt/nessus_agent/sbin/nessuscli agent link --key=a79bfc5756cbd9f44cbadb9eed15e50558bd2c133940e9d20e1a356b8d7e79f1 --cloud --groups="All" --port=443
+cp ~/dotfiles/ssh_config ~/.ssh/config
+```
+
+Then fill in your hostnames, usernames, and key file paths. The template includes sensible defaults for all hosts:
+
+```
+Host *
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+```
+
+## Fish Shell Configuration
+
+`config.fish` is a sanitized fish shell config including:
+- bobthefish theme settings
+- AFM (Apple Intelligence) server functions (`afm_start`, `afm_stop`, `afm_status`)
+- Ollama, LM Studio, and ZMK toolchain paths
+- Placeholders for API keys
+
+To use it:
+```bash
+cp ~/dotfiles/config.fish ~/.config/fish/config.fish
+```
+
+Store secrets in a separate untracked file:
+```bash
+# ~/.config/fish/conf.d/secrets.fish
+set -gx GEMINI_API_KEY <your-key>
+set -gx OPENROUTER_API_KEY <your-key>
 ```
 
 ## Installation
 
 ### 1. Clone this repository
 ```bash
-git clone https://github.com/yourusername/dotfiles.git ~/dotfiles
-cd ~/dotfiles
+git clone https://github.com/scottrych/dotfiles.git ~/dotfiles
 ```
 
-### 2. Add aliases to your shell profile
-Add the following to your `~/.bashrc`, `~/.zshrc`, or appropriate shell configuration file:
-
+### 2. Copy fish config (optional)
 ```bash
-# Source dotfiles aliases
-if [ -f ~/dotfiles/aliases.sh ]; then
-    source ~/dotfiles/aliases.sh
-fi
+cp ~/dotfiles/config.fish ~/.config/fish/config.fish
+```
+Add your API keys to `~/.config/fish/conf.d/secrets.fish`.
+
+### 3. Copy SSH config (optional)
+```bash
+cp ~/dotfiles/ssh_config ~/.ssh/config
+```
+Fill in your hostnames, usernames, and key paths.
+
+### 4. Add aliases to your shell profile
+Add the following to `~/.config/fish/config.fish`:
+
+```fish
+if test -f ~/dotfiles/aliases.fish
+    source ~/dotfiles/aliases.fish
+end
 ```
 
-### 3. Create aliases file
-Create `~/dotfiles/aliases.sh` with your preferred aliases:
-
+### 5. Reload your shell
 ```bash
-#!/bin/bash
-
-# Google Calendar aliases
-alias gcal="gcalcli --calendar='scottrych@gmail.com' --calendar='Family' --details title"
-alias agenda="gcalcli --calendar='scottrych@gmail.com' --calendar='Family' agenda"
-alias week="gcalcli --calendar='scottrych@gmail.com' --calendar='Family' calw"
-
-# Notification aliases
-alias notify="ntf send --pushover.priority normal"
-alias notify-low="ntf send --pushover.priority low"
-alias notify-high="ntf send --pushover.priority high"
-alias notify-done="ntf done"
-```
-
-### 4. Reload your shell
-```bash
-source ~/.bashrc  # or ~/.zshrc
+source ~/.config/fish/config.fish
 ```
 
 ## Configuration Examples
@@ -145,13 +156,6 @@ detail_length = title
 ### NTFY configuration
 Ensure your ntfy configuration includes Pushover settings for cross-device notifications.
 
-## Useful Tips
-
-- Use `CMD + ↑/↓` on macOS or `CTRL-SHIFT + ↑/↓` on Linux to jump between command blocks
-- Use `CMD + ENTER` or `CTRL-ENTER` on Linux to run command blocks in supported terminals
-- Combine commands with notifications: `make build && notify "Build completed"`
-- Use different priority levels based on urgency of notifications
-
 ## Troubleshooting
 
 ### Calendar not showing
@@ -162,7 +166,3 @@ Ensure your ntfy configuration includes Pushover settings for cross-device notif
 - Verify ntfy configuration
 - Check Pushover API settings
 - Test with: `ntf send --pushover.priority normal "Test message"`
-
----
-
-*Last updated: $(date)*
