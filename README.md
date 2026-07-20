@@ -9,6 +9,7 @@ This repository contains configuration files, aliases, and useful commands for m
 - [Google Calendar (gcalcli)](#google-calendar-gcalcli)
 - [SSH Configuration](#ssh-configuration)
 - [Fish Shell Configuration](#fish-shell-configuration)
+- [Starship Prompt](#starship-prompt)
 - [Installation](#installation)
 
 ## Aliases
@@ -110,6 +111,20 @@ set -gx GEMINI_API_KEY <your-key>
 set -gx OPENROUTER_API_KEY <your-key>
 ```
 
+## Starship Prompt
+
+`starship.toml` configures the Starship cross-shell prompt.
+
+Key settings:
+- `scan_timeout = 1000` — increases the directory scan timeout to avoid warnings on slower or network-mounted volumes
+- `[directory] read_only = "🔒"` — shows a lock emoji in read-only directories
+- `[vagrant] disabled = true` — hides the Vagrant module
+
+To use it:
+```bash
+ln -sf ~/dotfiles/starship.toml ~/.config/starship.toml
+```
+
 ## Installation
 
 ### 1. Clone this repository
@@ -123,13 +138,18 @@ cp ~/dotfiles/config.fish ~/.config/fish/config.fish
 ```
 Add your API keys to `~/.config/fish/conf.d/secrets.fish`.
 
-### 3. Copy SSH config (optional)
+### 3. Link Starship config
+```bash
+ln -sf ~/dotfiles/starship.toml ~/.config/starship.toml
+```
+
+### 4. Copy SSH config (optional)
 ```bash
 cp ~/dotfiles/ssh_config ~/.ssh/config
 ```
 Fill in your hostnames, usernames, and key paths.
 
-### 4. Add aliases to your shell profile
+### 5. Add aliases to your shell profile
 Add the following to `~/.config/fish/config.fish`:
 
 ```fish
@@ -138,7 +158,7 @@ if test -f ~/dotfiles/aliases.fish
 end
 ```
 
-### 5. Reload your shell
+### 6. Reload your shell
 ```bash
 source ~/.config/fish/config.fish
 ```
