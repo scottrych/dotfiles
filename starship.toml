@@ -1,6 +1,7 @@
+scan_timeout = 1000
+
 [vagrant]
 disabled = true
 
 [directory]
-scan_timeout = 1000
 read_only = "🔒"
